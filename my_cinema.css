@@ -1,0 +1,48 @@
+body
+{
+	background-color: black !important;
+}
+h1
+{
+	color : white !important;
+	text-align: center !important;
+	margin: auto !important;
+	border-bottom: white !important;
+	border-bottom-style: dashed !important;
+	width: 29% !important;
+	padding-bottom: 3% !important;
+	border-top: white !important;
+	border-top-style: dashed !important;
+	padding-top: 3% !important;
+}
+.carousel-inner.onebyone-carosel { margin: auto; width: 90%; }
+.onebyone-carosel .active.left { left: -33.33%; }
+.onebyone-carosel .active.right { left: 33.33%; }
+.onebyone-carosel .next { left: 33.33%; }
+.onebyone-carosel .prev { left: -33.33%; }
+
+.container
+{
+	width: 70% !important;
+	padding-top: 10% !important;
+}
+
+.search_bar
+{
+	float : right;
+	padding-top: 3%;
+}
+.banner
+{
+	display : flex;
+}
+.banner_img1
+{
+	width:10%;
+	margin-left: auto;
+}
+.banner_img2
+{
+	width:10%;
+	margin-right: auto;
+}
