@@ -14,15 +14,19 @@
        
     ?>
 		<header>
+        <div class = "member">
+        <img src="misc/member.png" class="member_img">
+        <h4><a href ="membership.php">Members</h4></a>
+        </div>
             <div class = "banner">
             <img src="misc/pop.jpg" class="banner_img1">
 			<h1>My Cinema</h1>
             <img src="misc/pop.jpg" class="banner_img2">
         </div>
-        
+
         <div class = "search_bar">
             <form method="post" action="member.php" id = "member" >
-                <input type ="text" name = "member"placeholder = "Member">
+                <input type ="text" name = "member" placeholder = "Members">
                 <input type="submit" value="Search" />
             </form>
             <form method="post" action="search.php" id="movie" >

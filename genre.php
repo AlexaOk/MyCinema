@@ -6,7 +6,7 @@
 		<meta charset="utf-8"/>
 	</head>
 	<body>
-		<h1>Members</h1>
+		<h1>My Results</h1>
 <?php
 function movie_type()
 {

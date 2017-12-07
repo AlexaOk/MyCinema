@@ -1,7 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Cinema - Members</title>
+		<link rel="stylesheet" href="my_cinema2.css"/>
+		<meta charset="utf-8"/>
+	</head>
+	<body>
+		<h1>Members</h1>
 <?php
 function search_member()
 {
-	$member = $_POST['member'];
+	$member =trim($_POST['member']);
 	if(isset($member) && !empty($member))
 	{
 		try
@@ -14,7 +23,7 @@ function search_member()
         	die('Erreur : '.$e->getMessage());
 		}
 
-		$answer = $bdd->query("SELECT * FROM fiche_personne LEFT JOIN membre ON fiche_personne.id_perso = membre.id_membre WHERE fiche_personne.nom LIKE '%$member%' OR fiche_personne.prenom LIKE '%$member%' ");
+		$answer = $bdd->query("SELECT * FROM fiche_personne LEFT JOIN membre ON fiche_personne.id_perso = membre.id_membre WHERE fiche_personne.nom LIKE '%$member%' OR fiche_personne.prenom LIKE '%$member%' OR CONCAT(fiche_personne.prenom,' ', fiche_personne.nom) LIKE '%$member%' OR CONCAT(fiche_personne.nom,' ', fiche_personne.nom) LIKE '%$member%' OR CONCAT(fiche_personne.nom, fiche_personne.prenom) LIKE '%$member%' OR CONCAT(fiche_personne.prenom, fiche_personne.nom) LIKE '%$member%'");
 		while ($value = $answer->fetch())
 		{
 		echo $value['prenom'] ." ". $value['nom'] . "<br>";
@@ -28,3 +37,10 @@ function search_member()
 
 search_member();
 ?>
+	 <form method="post" action="historique.php" id = "member" >
+	<h2><a href = "history.php">My History</a></h2>
+	</form>
+	<h2><a href = "abonnement.php">Mon Abonnement</a></h2>
+</body>
+</body>
+</html>
