@@ -5,33 +5,66 @@
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="my_cinema.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 	       <div class = "banner">
             <img src="misc/pop.jpg" class="banner_img1">
-			<h1>My Membership</h1>
+			<h1>Memberships</h1>
             <img src="misc/pop.jpg" class="banner_img2">
         </div>
-	<form method="post" action="history.php" id = "history" >
-                <input type ="text" name = "history" placeholder = "Member">
-                <input type="submit" value="My History" />
+
+ 	<form method="post" action="member.php" id = "infos" >
+                <input type ="text" name = "member" placeholder = "Member">
+                <input type="submit" value="Personal Infos" />
     </form>
 
-    <form method="post" action="add.php" id = "add" >
-	<input type ="text" name = "history" placeholder = "Name">
-                <input type="submit" value="Add a member" />
+    <div class = "member_history">
+	<form method="get" action="history.php" id="history" >
+                <input type ="search"  name = "history" placeholder = "Member">
+                <input type="submit" value="Member History" />
+    </form>
+
+    <form method="get" action="MovieAdd.php" class = "MovieAdd" >
+                <input type ="search" name = "name" placeholder = "Firstname">
+                <input type ="search" name = "surname" placeholder = "Surname">
+                <input type ="search" name = "title" placeholder = "Movie Title">
+                <input type="submit" value="Add To History" />
+    </form>
+	</div>
+
+    <div class = "add_comment">
+    <form method="post" action ="comment.php" class = "comment">
+    		<div id = "info_comment">
+    			<input type="search" name="name" placeholder="Firstname">
+    			<input type="search" name="surname" placeholder="Surname">
+    			<input type="search" name="title" placeholder="Movie Title">
+    		</div>
+    			<textarea rows="6" cols = "54" name="comment" id ="commentarea" placeholder="Type your comment..."></textarea><br>
+    			<input type="submit" value="Add Comment" id="add">
+    </form>
+    			
+	</div>
+
+	<div class = "modify_membership">
+    <form method="get" action="modify.php" id = "modify" >
+	<input type ="text" name = "firstname" placeholder = "Firstname">
+	<input type ="text" name = "surname" placeholder = "Surname">
+	<select  name = "membership" >
+                    <optgroup label = "Membership">
+                    <option value = "VIP">VIP</option>
+                    <option value="GOLD">GOLD</option> 
+                    <option value="Classic" >Classic</option>
+                    <option value="pass Day">Pass Day</option>
+                    <option value="malsch">Malsch</option>
+                </optgroup>
+    </select>
+    <input type="submit" value="Change/Add Membership" />
 	</form>
-	<form method="post" action="delete.php" id = delete >
-	<input type ="text" name = "history" placeholder = "Name">
-                <input type="submit" value="Delete a member" />
+	<form method="get" action="delete.php" id = delete >
+	<input type ="text" name = "name" placeholder = "Name">
+                <input type="submit" value="Cancel Membership" />
 	</form>
-	<form method="post" action="historique.php" id = "modify" >
-	<input type ="text" name = "history" placeholder = "Name">
-                <input type="submit" value="Modify my account" />
-	</form>
+	</div>
 
 	</body>
 	</html>

@@ -2,15 +2,20 @@
 <html>
 	<head>
 		<title>My Cinema - Results</title>
-		<link rel="stylesheet" href="my_cinema2.css"/>
+		<link rel="stylesheet" href="my_cinema.css"/>
 		<meta charset="utf-8"/>
 	</head>
 	<body>
-		<h1>My Results</h1>
+	     <div class = "banner">
+            <img src="misc/pop.jpg" class="banner_img1">
+			<h1>My Results</h1>
+            <img src="misc/pop.jpg" class="banner_img2">
+        </div>
 <?php
 function movie_type()
 {
-	$genre = $_POST['genre'];
+	$genre = $_GET['genre'];
+
 	if(isset($genre) && !empty($genre))
 	{
 		try
@@ -23,25 +28,25 @@ function movie_type()
         	die('Erreur : '.$e->getMessage());
 		}
 
-		$answer = $bdd->query("SELECT * FROM genre LEFT JOIN film ON film.id_genre = genre.id_genre WHERE genre.id_genre LIKE '%$genre%'");
+		$answer = $bdd->query(" SELECT * 
+				   FROM genre 
+				   LEFT JOIN film ON film.id_genre = genre.id_genre
+				   WHERE genre.nom LIKE '%$genre%' 
+				   ORDER BY titre");
+	
 		while ($value = $answer->fetch())
 		{
-		echo $value['titre'] . "<br>";
-		}
-		if($value !== $genre)
-		{
-			echo "0 résultat(s) trouvé";
+		echo "<h2>".$value['titre'] . "</h2><br><br><p>". $value['resum']."<br><br>Runtime : ".$value['duree_min']." min<br><br>Release date : ".$value['date_debut_affiche']."<br></p>";
 		}
 	}
 	else
 	{
-		echo "O réultat(s) trouvé";
+		echo "<p>No Results</p>";
 	}
+
 }
-
-
-
 movie_type();
+
 ?>
 </body>
 </html>

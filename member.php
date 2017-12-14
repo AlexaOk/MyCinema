@@ -2,11 +2,15 @@
 <html>
 	<head>
 		<title>My Cinema - Members</title>
-		<link rel="stylesheet" href="my_cinema2.css"/>
+		<link rel="stylesheet" href="my_cinema.css"/>
 		<meta charset="utf-8"/>
 	</head>
 	<body>
-		<h1>Members</h1>
+	     <div class = "banner">
+            <img src="misc/pop.jpg" class="banner_img1">
+			<h1>Members Infos</h1>
+            <img src="misc/pop.jpg" class="banner_img2">
+        </div>
 <?php
 function search_member()
 {
@@ -23,24 +27,32 @@ function search_member()
         	die('Erreur : '.$e->getMessage());
 		}
 
-		$answer = $bdd->query("SELECT * FROM fiche_personne LEFT JOIN membre ON fiche_personne.id_perso = membre.id_membre WHERE fiche_personne.nom LIKE '%$member%' OR fiche_personne.prenom LIKE '%$member%' OR CONCAT(fiche_personne.prenom,' ', fiche_personne.nom) LIKE '%$member%' OR CONCAT(fiche_personne.nom,' ', fiche_personne.nom) LIKE '%$member%' OR CONCAT(fiche_personne.nom, fiche_personne.prenom) LIKE '%$member%' OR CONCAT(fiche_personne.prenom, fiche_personne.nom) LIKE '%$member%'");
+		$answer = $bdd->query("SELECT * FROM fiche_personne 
+			LEFT JOIN membre ON fiche_personne.id_perso = membre.id_membre 
+			WHERE fiche_personne.nom LIKE '%$member%' 
+			OR fiche_personne.prenom LIKE '%$member%' 
+			OR CONCAT(fiche_personne.prenom,' ', fiche_personne.nom) LIKE '%$member%' 
+			OR CONCAT(fiche_personne.nom,' ', fiche_personne.nom) LIKE '%$member%' 
+			OR CONCAT(fiche_personne.nom, fiche_personne.prenom) LIKE '%$member%' 
+			OR CONCAT(fiche_personne.prenom, fiche_personne.nom) LIKE '%$member%'
+			ORDER BY fiche_personne.prenom");
+
 		while ($value = $answer->fetch())
 		{
-		echo $value['prenom'] ." ". $value['nom'] . "<br>";
+			$date=explode(" ", $value['date_naissance']);
+			$date_of_birth=$date[0];
+			echo "<p>".ucfirst($value['prenom']) ." ". ucfirst($value['nom']) ."<br> D.O.B : ".$date_of_birth. "<br> Email : ". $value['email']."<br> Ville : ".$value['ville']."<br> POSTCODE : ".$value['cpostal']."<br> ID : ".$value['id_perso'];
 		}
+		
 	}
 	else
 	{
-		echo "O réultat(s) trouvé";
+		echo "<p> No Results</p>";
 	}
 }
 
 search_member();
 ?>
-	 <form method="post" action="historique.php" id = "member" >
-	<h2><a href = "history.php">My History</a></h2>
-	</form>
-	<h2><a href = "abonnement.php">Mon Abonnement</a></h2>
 </body>
 </body>
 </html>
