@@ -40,7 +40,7 @@
     }
     else
     {
-        echo '<p>Please enter a correct/complete name !</p>';
+        echo '<h3>Please enter a correct name !</h3>';
     }
 }
 cancel_membership();

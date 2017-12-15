@@ -8,9 +8,9 @@
 	</head>
 	<body>
 	       <div class = "banner">
-            <img src="misc/pop.jpg" class="banner_img1">
+            <img src="misc/pop.jpg" class="banner_img3">
 			<h1>History</h1>
-            <img src="misc/pop.jpg" class="banner_img2">
+            <img src="misc/pop.jpg" class="banner_img4">
         </div>
 
 <?php
@@ -48,7 +48,7 @@ function addMovie()
     }
     else
     {
-        echo '<p>Please enter the correct informations !</p>';
+        echo '<h3>Please enter the correct informations !</h3>';
     }
 }
 addMovie();

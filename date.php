@@ -7,9 +7,9 @@
 	</head>
 	<body>
 	     <div class = "banner">
-            <img src="misc/pop.jpg" class="banner_img1">
+            <img src="misc/pop.jpg" class="banner_img3">
 			<h1>My Results</h1>
-            <img src="misc/pop.jpg" class="banner_img2">
+            <img src="misc/pop.jpg" class="banner_img4">
         </div> 
 <?php
 

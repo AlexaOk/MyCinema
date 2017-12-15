@@ -8,47 +8,26 @@
 	</head>
 	<body>
 	       <div class = "banner">
-            <img src="misc/pop.jpg" class="banner_img1">
+            <img src="misc/pop.jpg" class="banner_img3">
 			<h1>Member History</h1>
-            <img src="misc/pop.jpg" class="banner_img2">
+            <img src="misc/pop.jpg" class="banner_img4">
         </div>
 			
 
  <?php
- function search_history()
- {
-$history = $_GET['history'];
-try {
+$history=$_GET['history'];
+		try
+		{
+   		$bdd = new PDO('mysql:host=localhost;dbname=epitech_tp;charset=utf8', 'root', '');
+   		$limit=5;
+   		$page=(!empty($_GET['page']) ? $_GET['page'] : 1);
 
-    // Find out how many items are in the table
-    $dbh = new PDO('mysql:host=localhost;dbname=epitech_tp;charset=utf8', 'root', '');
-    $total = $dbh->query('
-        SELECT * FROM fiche_personne 
-           JOIN membre ON fiche_personne.id_perso = membre.id_fiche_perso 
-           JOIN historique_membre ON membre.id_membre = historique_membre.id_membre 
-           JOIN film ON historique_membre.id_film = film.id_film
-    ')->fetchColumn();
+   		
+   		$start=($page-1)*$limit;
 
-     $limit = 5;
-
-   
-    $pages = ceil($total / $limit);
-
-   
-    $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
-        'options' => array(
-            'default'   => 1,
-            'min_range' => 1,
-        ),
-    )));
-   
-    $offset = ($page - 1)  * $limit;
-
-    $start = $offset + 1;
-    $end = min(($offset + $limit), $total);
-
-    $stmt = $dbh->prepare("
-       		SELECT * FROM fiche_personne 
+   //SQL_CALC_FROM_ROWS count total of elements
+   		$query = " SELECT SQL_CALC_FOUND_ROWS * 
+   		   FROM fiche_personne 
            JOIN membre ON fiche_personne.id_perso = membre.id_fiche_perso 
            JOIN historique_membre ON membre.id_membre = historique_membre.id_membre 
            JOIN film ON historique_membre.id_film = film.id_film 
@@ -56,42 +35,52 @@ try {
            OR fiche_personne.nom LIKE '%$history%'
            OR CONCAT(fiche_personne.prenom,' ', fiche_personne.nom) LIKE '%$history%'
            OR CONCAT(fiche_personne.nom,' ', fiche_personne.prenom) LIKE '%$history%'
-        LIMIT
+           LIMIT
             :limit
-        OFFSET
-            :offset
-    ");
+           OFFSET
+            :start
+				   ";
+		$query = $bdd->prepare($query);	
 
-    $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-    $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-    $stmt->execute();
+		$query->bindValue(
+			'start',
+			$start,
+			PDO::PARAM_INT);
+		$query->bindValue(
+			'limit',
+			$limit,
+			PDO::PARAM_INT);
 
-   
-    if ($stmt->rowCount() > 0) {
-        // Define how we want to fetch the results
-        $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        $iterator = new IteratorIterator($stmt);
+		$query->execute();
 
-     
-        foreach ($iterator as $row) {
-            echo '<p>'. $row['titre'] . '</p>';
-        }
-            $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+		$rows=$bdd->query('SELECT found_rows()');
+		$total=$rows->fetchColumn();
+
+		while($value=$query->fetch())
+		{
+				echo "<h3>".$value['titre'] . "</h3><br><br><p>". $value['resum']."<br><br>Runtime : ".$value['duree_min']." min<br><br>Release date : ".$value['date_debut_affiche']."<br></p>";
+		}
 
 
-    $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+		$nbrPages=ceil($total/$limit);
+	
 
-    echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total, ' results ', $nextlink, ' </p></div>';
+		if($page>1):
+?>
 
-    } else {
-        echo '<p>No results could be displayed.</p>';
-    }
+<a class="prevbutton" href="?page=<?php echo $page-1; echo '&history=' . $_GET['history']; ?>" >Previous Page</a> — 
+<?php endif; if($page<$nbrPages): ?>
+—<a class= "nextbutton" href="?page=<?php echo $page+1; echo '&history=' . $_GET['history']; ?>">Next Page</a>
 
-} catch (Exception $e) {
-    echo '<p>', $e->getMessage(), '</p>';
-}
-}
-search_history();
+<?php
+endif;
+ 
+		}
+		catch(Exception $e)
+
+		{
+        	die('Erreur : '.$e->getMessage());
+		}
 ?>
 </body>
 </html>

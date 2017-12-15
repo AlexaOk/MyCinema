@@ -90,6 +90,25 @@ color: Gainsboro;
 	width:10%;
 	margin-right: auto;
 }
+.banner_img3
+{
+	width: 10%;
+	margin-left: 14%;
+	position: fixed;
+}
+.banner_img4
+{
+	width: 10%;
+	margin-left: 76%;
+	position: fixed;
+}
+.banner_img5
+{
+	position: fixed;
+	width: 3%;
+	float: right;
+	margin-left: 95%;
+}
 #search
 {
 	margin-left: 3px;
@@ -196,4 +215,18 @@ color: Gainsboro;
 #info_comment
 {
 	margin-left: 2%;
+}
+.prevbutton
+{
+	font-size: 20px;
+	position: fixed;
+	margin-top: -71%;
+	margin-left: 14%;
+}
+.nextbutton
+{
+	font-size: 20px;
+	position: fixed;
+	margin-top: -71%;
+	margin-left: 76%;
 }

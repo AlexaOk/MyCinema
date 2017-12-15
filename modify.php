@@ -7,9 +7,9 @@
 	<body>
 		<header>
             <div class = "banner">
-            <img src="misc/pop.jpg" class="banner_img1">
+            <img src="misc/pop.jpg" class="banner_img3">
 			<h1>New Membership</h1>
-            <img src="misc/pop.jpg" class="banner_img2">
+            <img src="misc/pop.jpg" class="banner_img4">
         </div>
 <?php
 
@@ -42,7 +42,7 @@ function add_membership()
     }
     else
     {
-        echo '<p>Please enter a complete name and/or select a membership !</p>';
+        echo '<h3>Please enter a complete name and/or select a membership !</h3>';
     }
 }
 add_membership();
