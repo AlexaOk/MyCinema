@@ -58,7 +58,7 @@ $history=$_GET['history'];
 
 		while($value=$query->fetch())
 		{
-				echo "<h3>".$value['titre'] . "</h3><br><br><p>". $value['resum']."<br><br>Runtime : ".$value['duree_min']." min<br><br>Release date : ".$value['date_debut_affiche']."<br></p>";
+				echo "<h3>".ucfirst($value['prenom'])." ".ucfirst($value['nom'])." 's history"."</h2><br><h3>".$value['titre'] . "</h3><br><br><p>". $value['resum']."<br><br>Runtime : ".$value['duree_min']." min<br><br>Release date : ".$value['date_debut_affiche']."<br></p>";
 		}
 
 
@@ -67,14 +67,20 @@ $history=$_GET['history'];
 
 		if($page>1):
 ?>
-
-<a class="prevbutton" href="?page=<?php echo $page-1; echo '&history=' . $_GET['history']; ?>" >Previous Page</a> — 
+<div class="prevbutton">
+<a href="?page=<?php echo $page-1; echo '&history=' . $_GET['history']; ?>" >Previous Page</a></div> — 
 <?php endif; if($page<$nbrPages): ?>
-—<a class= "nextbutton" href="?page=<?php echo $page+1; echo '&history=' . $_GET['history']; ?>">Next Page</a>
+—<div class="nextbutton"><a href="?page=<?php echo $page+1; echo '&history=' . $_GET['history']; ?>">Next Page</a></div>
 
 <?php
 endif;
- 
+  for ($i = 1; $i <= $nbrPages; $i++):
+    ?>
+    <div class="numbers">
+    <a href="?page=<?php echo $i; echo '&history=' . $_GET['history']; ?>"><?php echo $i; ?></a>
+	</div>
+<?php
+	endfor;	
 		}
 		catch(Exception $e)
 

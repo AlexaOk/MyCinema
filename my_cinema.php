@@ -23,11 +23,11 @@
 
         <div class = "search_bar">
            
-            <form method="post" action="search.php" id="movie" >
+            <form method="get" action="search.php" id="movie" >
                 <input type="text" name="movie" placeholder = "Movies" value=""/>
                 <input type="submit" value="Search" />
             </form>
-            <form method="post" action="distib.php" id="distributor">
+            <form method="get" action="distib.php" id="distributor">
                 <input type="text" name="distributor"  placeholder = "Distributors" value=""/>
                 <input type="submit" value="Search" />
             </form>

@@ -16,7 +16,7 @@
             <img src="misc/pop.jpg" class="banner_img2">
         </div>
 
- 	<form method="post" action="member.php" id = "infos" >
+ 	<form method="get" action="member.php" id = "infos" >
                 <input type ="text" name = "member" placeholder = "Member">
                 <input type="submit" value="Personal Infos" />
     </form>

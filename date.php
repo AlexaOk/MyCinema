@@ -6,6 +6,9 @@
 		<meta charset="utf-8"/>
 	</head>
 	<body>
+		<a href = "my_cinema.php"> 
+		 <img src="misc/home.jpg" class="banner_img5">
+		</a>
 	     <div class = "banner">
             <img src="misc/pop.jpg" class="banner_img3">
 			<h1>My Results</h1>

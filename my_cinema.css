@@ -219,14 +219,17 @@ color: Gainsboro;
 .prevbutton
 {
 	font-size: 20px;
-	position: fixed;
-	margin-top: -71%;
-	margin-left: 14%;
+	float: left;
 }
 .nextbutton
 {
 	font-size: 20px;
-	position: fixed;
-	margin-top: -71%;
-	margin-left: 76%;
+	float: right;
+}
+.numbers
+{
+	text-align: center;
+	display: inline-block;
+	margin-left: 0.7em;
+	margin-top: 5%;
 }

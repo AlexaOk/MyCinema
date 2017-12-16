@@ -24,6 +24,7 @@
 
    		
    		$start=($page-1)*$limit;
+
    
    		$query = " SELECT SQL_CALC_FOUND_ROWS * 
 				   FROM genre 
@@ -35,7 +36,6 @@
 				   ";
 		$query = $bdd->prepare($query);
 
-	
 
 		$query->bindValue(
 			'start',
@@ -50,7 +50,7 @@
 
 
 		$rows=$bdd->query('SELECT found_rows()');
-		
+
 		$total=$rows->fetchColumn();
 
 		while($value=$query->fetch())
@@ -64,14 +64,20 @@
 
 		if($page>1):
 ?>
-
-<a class="prevbutton" href="?page=<?php echo $page-1; echo '&genre=' . $_GET['genre']; ?>" >Previous Page</a> — 
+<div class="prevbutton">
+<a href="?page=<?php echo $page-1; echo '&genre=' . $_GET['genre']; ?>" >Previous Page</a></div> — 
 <?php endif; if($page<$nbrPages): ?>
-—<a class= "nextbutton" href="?page=<?php echo $page+1; echo '&genre=' . $_GET['genre']; ?>">Next Page</a>
+—<div class="nextbutton"><a href="?page=<?php echo $page+1; echo '&genre=' . $_GET['genre']; ?>">Next Page</a></div>
 
 <?php
 endif;
- 
+ for ($i = 1; $i <= $nbrPages; $i++):
+    ?>
+    <div class="numbers">
+    <a href="?page=<?php echo $i; echo '&genre=' . $_GET['genre']; ?>"><?php echo $i; ?></a>
+	</div>
+<?php
+	endfor;	 
 		}
 		catch(Exception $e)
 
