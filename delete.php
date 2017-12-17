@@ -6,6 +6,9 @@
 	</head>
 	<body>
 		<header>
+        <a href = "my_cinema.php"> 
+         <img src="misc/home.jpg" class="banner_img5">
+        </a>
             <div class = "banner">
             <img src="misc/pop.jpg" class="banner_img1">
 			<h1>Cancellation</h1>

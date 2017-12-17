@@ -33,6 +33,8 @@ function moviedate()
 		}
 
 		$answer = $bdd->query("SELECT * FROM film WHERE '$date'<date_fin_affiche AND date_debut_affiche<'$date' ORDER BY date_debut_affiche ");
+
+
 		while ($value = $answer->fetch())
 		{
 		echo "<h3>".$value['titre'] . "</h3><br><br><p>". $value['resum']."<br><br>Runtime : ".$value['duree_min']." min<br><br>Release date : ".$value['date_debut_affiche']."<br></p>";
